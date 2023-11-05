@@ -1,21 +1,32 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
-namespace webapi.Controllers;
-
-[ApiController]
-[Route("[controller]")]
-public class UserController : ControllerBase
+namespace webapi.Controllers
 {
-    private readonly ILogger<UserController> _logger;
-
-    public UserController(ILogger<UserController> logger)
+    [ApiController]
+    [Route("[controller]")]
+    public class UserController : ControllerBase
     {
-        _logger = logger;
-    }
+        private readonly ILogger<UserController> _logger;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-    [HttpGet(Name = "User")]
-    public ActionResult<int> Get()
-    {
-        return Ok(1);
+        public UserController(ILogger<UserController> logger, IHttpContextAccessor httpContextAccessor)
+        {
+            _logger = logger;
+            _httpContextAccessor = httpContextAccessor;
+        }
+
+        [HttpGet(Name = "User")]
+        public ActionResult<int> Get()
+        {
+            // Store a value in the session
+            _httpContextAccessor.HttpContext?.Session.SetInt32("UserId", 1);
+
+            // Retrieve a value from the session
+            int userId = _httpContextAccessor.HttpContext?.Session.GetInt32("UserId") ?? -1;
+
+            return Ok(userId);
+        }
     }
 }

@@ -34,3 +34,4 @@
 /Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/obj/Debug/net7.0/webapi.pdb
 /Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/obj/Debug/net7.0/webapi.genruntimeconfig.cache
 /Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/obj/Debug/net7.0/ref/webapi.dll
+/Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/bin/Debug/net7.0/System.Security.Permissions.dll
