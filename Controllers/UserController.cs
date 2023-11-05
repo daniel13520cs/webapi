@@ -26,7 +26,12 @@ namespace webapi.Controllers
             // Retrieve a value from the session
             int userId = _httpContextAccessor.HttpContext?.Session.GetInt32("UserId") ?? -1;
 
-            return Ok(userId);
+            var user = new
+            {
+                UserId = userId
+            };
+
+            return Ok(user);
         }
     }
 }
