@@ -21,7 +21,7 @@ namespace webapi.Controllers
         public ActionResult<int> Get()
         {
             // Store a value in the session
-            _httpContextAccessor.HttpContext?.Session.SetInt32("UserId", 1);
+            //_httpContextAccessor.HttpContext?.Session.SetInt32("UserId", 1);
 
             // Retrieve a value from the session
             int userId = _httpContextAccessor.HttpContext?.Session.GetInt32("UserId") ?? -1;

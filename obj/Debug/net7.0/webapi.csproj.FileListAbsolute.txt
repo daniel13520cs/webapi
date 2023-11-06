@@ -35,3 +35,10 @@
 /Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/obj/Debug/net7.0/webapi.genruntimeconfig.cache
 /Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/obj/Debug/net7.0/ref/webapi.dll
 /Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/bin/Debug/net7.0/System.Security.Permissions.dll
+/Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/bin/Debug/net7.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/bin/Debug/net7.0/Microsoft.IdentityModel.Logging.dll
+/Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.dll
+/Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/bin/Debug/net7.0/Microsoft.IdentityModel.Tokens.dll
+/Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/bin/Debug/net7.0/System.IdentityModel.Tokens.Jwt.dll
