@@ -25,8 +25,15 @@ public class AuthenticationController : ControllerBase
         {
             // Create a session
             //_httpContextAccessor.HttpContext?.Session.SetInt32("UserId", 1);
-            var token = GenerateJwtToken(login.Username, SECRET_KEY);
-            return Ok(new { token });
+            MySqlDataAccess db = new MySqlDataAccess();
+            string sessionToken = db.GetSessionToken(login.Username);
+            if (sessionToken == null) {
+                var token = GenerateJwtToken(login.Username, SECRET_KEY);
+                db.CreateSessionToken(login.Username, token);
+                return Ok(new { token });
+            } else {
+                return Ok(new {sessionToken});
+            }
         }
 
         return Unauthorized("Invalid credentials.");
