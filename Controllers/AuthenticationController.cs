@@ -21,22 +21,30 @@ public class AuthenticationController : ControllerBase
     public IActionResult Login([FromBody] LoginModel login)
     {
         // Validate the username and password (you should use more secure methods)
-        if (login.Username == "daniel" && login.Password == "123")
-        {
-            // Create a session
-            //_httpContextAccessor.HttpContext?.Session.SetInt32("UserId", 1);
-            MySqlDataAccess db = new MySqlDataAccess();
-            string sessionToken = db.GetSessionToken(login.Username);
-            if (sessionToken == null) {
-                var token = GenerateJwtToken(login.Username, SECRET_KEY);
-                db.CreateSessionToken(login.Username, token);
-                return Ok(new { token });
-            } else {
-                return Ok(new {sessionToken});
-            }
+        MySqlDataAccess db = new MySqlDataAccess();
+        LoginModel user = db.GetUser(login);
+        if (user == null || user.Password != login.Password) {
+            return Unauthorized("Invalid username or password");
         }
+        string sessionToken = db.GetSessionToken(login.Username);
+        if (sessionToken == null) {
+            var token = GenerateJwtToken(login.Username, SECRET_KEY);
+            db.CreateSessionToken(login.Username, token);
+            return Ok(new { token });
+        } else {
+            return Ok(new {sessionToken});
+        }
+    }
 
-        return Unauthorized("Invalid credentials.");
+    [HttpPost("register")]
+    public IActionResult Register([FromBody] LoginModel login){
+        MySqlDataAccess db = new MySqlDataAccess();
+        LoginModel user = db.GetUser(login);
+        if (user != null) {
+            return Unauthorized("username exists");
+        }
+        db.CreateUser(login);
+        return Ok();
     }
 
     [HttpGet("logout")]
