@@ -12,6 +12,9 @@ public class AuthenticationController : ControllerBase
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
     public static readonly string SECRET_KEY = "QD+5s0-75NnAUCMyUsUf@;YdDwudCu";
+    public const string appName = "WORKDEMO";
+
+    private static string? appToken;
     public AuthenticationController(IHttpContextAccessor httpContextAccessor)
     {
         _httpContextAccessor = httpContextAccessor;
@@ -20,6 +23,9 @@ public class AuthenticationController : ControllerBase
     [HttpPost("login")]
     public IActionResult Login([FromBody] LoginModel login)
     {
+        if (appToken == null) {
+            appToken = GenerateJwtToken(appName, SECRET_KEY);
+        }
         // Validate the username and password (you should use more secure methods)
         MySqlDataAccess db = new MySqlDataAccess();
         LoginModel user = db.GetUser(login);
@@ -28,11 +34,11 @@ public class AuthenticationController : ControllerBase
         }
         string sessionToken = db.GetSessionToken(login.Username);
         if (sessionToken == null) {
-            var token = GenerateJwtToken(login.Username, SECRET_KEY);
-            db.CreateSessionToken(login.Username, token);
-            return Ok(new { token });
+            sessionToken = GenerateJwtToken(login.Username, SECRET_KEY);
+            db.CreateSessionToken(login.Username, sessionToken);
+            return Ok(new { appToken, sessionToken });
         } else {
-            return Ok(new {sessionToken});
+            return Ok(new {appToken, sessionToken});
         }
     }
 
