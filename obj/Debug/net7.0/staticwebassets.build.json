@@ -1,11 +1,37 @@
 {
   "Version": 1,
-  "Hash": "qWIDttiHurVt0W82xiTX0A7xgYJ9/MKKTQaaiKq7axg=",
+  "Hash": "S7bnVqgFvSaTaoHNrfGtnNh87Ru0HLnCIwIxb/qPTks=",
   "Source": "webapi",
   "BasePath": "_content/webapi",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "webapi/wwwroot",
+      "Source": "webapi",
+      "ContentRoot": "/Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/wwwroot/",
+      "BasePath": "_content/webapi",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/wwwroot/images/products/cfbc3c14-fb4f-4f35-99ce-14e64e593091.png",
+      "SourceId": "webapi",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/wwwroot/",
+      "BasePath": "_content/webapi",
+      "RelativePath": "images/products/cfbc3c14-fb4f-4f35-99ce-14e64e593091.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/products/cfbc3c14-fb4f-4f35-99ce-14e64e593091.png"
+    }
+  ]
 }

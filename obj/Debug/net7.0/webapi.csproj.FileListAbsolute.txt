@@ -65,3 +65,4 @@
 /Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/bin/Debug/net7.0/runtimes/win/lib/netcoreapp3.0/System.Drawing.Common.dll
 /Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/bin/Debug/net7.0/runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll
 /Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/bin/Debug/net7.0/runtimes/win/lib/netcoreapp3.0/System.Windows.Extensions.dll
+/Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/bin/Debug/net7.0/webapi.staticwebassets.runtime.json

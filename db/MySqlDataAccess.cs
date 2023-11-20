@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
+using webapi.builder;
 
 public class MySqlDataAccess
 {
@@ -104,6 +106,40 @@ public class MySqlDataAccess
         }
         return res;
     }
+
+public IList<ProductModel> GetAllProducts()
+{
+    List<ProductModel> productList = new List<ProductModel>();
+
+    using (MySqlConnection connection = new MySqlConnection(_connectionString))
+    {
+        connection?.Open();
+        string query = "SELECT * FROM product";
+
+        using (MySqlCommand command = new MySqlCommand(query, connection))
+        {
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    ProductModel product = new ProductModelBuilder()
+                        .SetName(reader["name"].ToString())
+                        .SetDescription(reader["desc"].ToString())
+                        .SetPrice(reader.GetInt32("price"))
+                        .SetCurrency(reader["currency"].ToString())
+                        .SetQuantity(reader.GetInt32("maxQuantity"))
+                        .SetImageURL($"images/{reader["imageURL"].ToString()}") // Adjust this line
+                        .Build();
+
+                    productList.Add(product);
+                }
+            }
+        }
+    }
+
+    return productList;
+}
+
 
     public string? GetSessionToken(string username)
     {

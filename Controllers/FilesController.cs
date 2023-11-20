@@ -27,7 +27,8 @@ public class FilesController : ControllerBase
 
         string assemblyPath = Assembly.GetExecutingAssembly().Location;
         string assemblyDirectory = Path.GetDirectoryName(assemblyPath);
-        var uploadsFolder = Path.Combine(assemblyDirectory, "images", "products");
+        string imageURL = Path.Combine("wwwroot","images", "products");
+        var uploadsFolder = Path.Combine(assemblyDirectory, "../../../", imageURL);
         if (!Directory.Exists(uploadsFolder))
         {
             Directory.CreateDirectory(uploadsFolder);
@@ -46,7 +47,7 @@ public class FilesController : ControllerBase
             .SetPrice(price)
             .SetCurrency(currency)
             .SetQuantity(quantity)
-            .SetImageURL(filePath)
+            .SetImageURL(Path.Combine(imageURL, uniqueFileName))
             .Build();
         
         MySqlDataAccess db = new MySqlDataAccess();
@@ -56,4 +57,14 @@ public class FilesController : ControllerBase
         return Ok(new { FilePath = filePath });
     }
 
+    [HttpGet("allProducts")]
+    public async Task<IActionResult> GetAllProductsInfo() 
+    {
+        MySqlDataAccess db = new MySqlDataAccess();
+        IList<ProductModel> products = db.GetAllProducts();
+        foreach (var p in products) {
+            Console.WriteLine(p);
+        }
+        return Ok(products[0]);
+    }
 }
