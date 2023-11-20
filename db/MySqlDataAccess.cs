@@ -43,6 +43,44 @@ public class MySqlDataAccess
             }
         }
     }
+    public void CreateProduct(ProductModel product)
+    {
+        using (MySqlConnection connection = new MySqlConnection(_connectionString))
+        {
+            connection?.Open();
+            string query = @"
+                INSERT INTO product 
+                (name, `desc`, SKU, maxQuantity, category, price, imageURL, currency, created_at, modified_at) 
+                VALUES 
+                (@name, @desc, @SKU, @maxQuantity, @category, @price, @imageURL, @currency, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)";
+
+            using (MySqlCommand command = new MySqlCommand(query, connection))
+            {
+                // Add parameters to prevent SQL injection
+                command.Parameters.AddWithValue("@name", product.GetName());
+                command.Parameters.AddWithValue("@desc", product.GetDescription());
+                command.Parameters.AddWithValue("@SKU", null);
+                command.Parameters.AddWithValue("@maxQuantity", product.GetQuantity());
+                command.Parameters.AddWithValue("@category", null);
+                command.Parameters.AddWithValue("@price", product.GetPrice());
+                command.Parameters.AddWithValue("@imageURL", product.GetImageURL());
+                command.Parameters.AddWithValue("@currency", product.GetCurrency());
+
+                // Execute the query
+                int rowsAffected = command.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    Console.WriteLine("Product added successfully.");
+                }
+                else
+                {
+                    Console.WriteLine("Failed to add product.");
+                }
+            }
+        }
+    }
+
 
     public LoginModel? GetUser(LoginModel login) {
         LoginModel res = null;
