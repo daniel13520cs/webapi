@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/webapi.csproj": {}
+    "c:\\Users\\chihd\\Documents\\GitHub\\workDemo\\webapi\\webapi.csproj": {}
   },
   "projects": {
-    "/Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/webapi.csproj": {
+    "c:\\Users\\chihd\\Documents\\GitHub\\workDemo\\webapi\\webapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/webapi.csproj",
+        "projectUniqueName": "c:\\Users\\chihd\\Documents\\GitHub\\workDemo\\webapi\\webapi.csproj",
         "projectName": "webapi",
-        "projectPath": "/Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/webapi.csproj",
-        "packagesPath": "/Users/chihchienhsiao/.nuget/packages/",
-        "outputPath": "/Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/obj/",
+        "projectPath": "c:\\Users\\chihd\\Documents\\GitHub\\workDemo\\webapi\\webapi.csproj",
+        "packagesPath": "C:\\Users\\chihd\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\chihd\\Documents\\GitHub\\workDemo\\webapi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/chihchienhsiao/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\chihd\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -74,6 +74,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.14, 7.0.14]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[7.0.14, 7.0.14]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.14, 7.0.14]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.14, 7.0.14]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -82,7 +100,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.200/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

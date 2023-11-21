@@ -8,7 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
 using webapi.builder;
 
-[Route("product")]
+[Route("products")]
 [ApiController]
 public class FilesController : ControllerBase
 {
@@ -65,6 +65,6 @@ public class FilesController : ControllerBase
         foreach (var p in products) {
             Console.WriteLine(p);
         }
-        return Ok(products[0]);
+        return Ok(products);
     }
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "S7bnVqgFvSaTaoHNrfGtnNh87Ru0HLnCIwIxb/qPTks=",
+  "Hash": "0F9IdOV+XSF3cJz9ZwaNTKlwxYIjgogi65EgspJ9Yns=",
   "Source": "webapi",
   "BasePath": "_content/webapi",
   "Mode": "Default",
@@ -8,30 +8,70 @@
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [
     {
-      "Name": "webapi/wwwroot",
+      "Name": "webapi\\wwwroot",
       "Source": "webapi",
-      "ContentRoot": "/Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/wwwroot/",
+      "ContentRoot": "c:\\Users\\chihd\\Documents\\GitHub\\workDemo\\webapi\\wwwroot\\",
       "BasePath": "_content/webapi",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "/Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/wwwroot/images/products/cfbc3c14-fb4f-4f35-99ce-14e64e593091.png",
+      "Identity": "c:\\Users\\chihd\\Documents\\GitHub\\workDemo\\webapi\\wwwroot\\images\\products\\9b28eeea-a95e-4606-83c8-48f8dfe83d8e.jpg",
       "SourceId": "webapi",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/chihchienhsiao/Documents/chihchien/workDEMO/webapi/wwwroot/",
+      "ContentRoot": "c:\\Users\\chihd\\Documents\\GitHub\\workDemo\\webapi\\wwwroot\\",
       "BasePath": "_content/webapi",
-      "RelativePath": "images/products/cfbc3c14-fb4f-4f35-99ce-14e64e593091.png",
+      "RelativePath": "images/products/9b28eeea-a95e-4606-83c8-48f8dfe83d8e.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/images/products/cfbc3c14-fb4f-4f35-99ce-14e64e593091.png"
+      "OriginalItemSpec": "wwwroot\\images\\products\\9b28eeea-a95e-4606-83c8-48f8dfe83d8e.jpg"
+    },
+    {
+      "Identity": "c:\\Users\\chihd\\Documents\\GitHub\\workDemo\\webapi\\wwwroot\\images\\products\\cd6cb1af-c4d6-478a-91a7-ee61d6608abb.jpg",
+      "SourceId": "webapi",
+      "SourceType": "Discovered",
+      "ContentRoot": "c:\\Users\\chihd\\Documents\\GitHub\\workDemo\\webapi\\wwwroot\\",
+      "BasePath": "_content/webapi",
+      "RelativePath": "images/products/cd6cb1af-c4d6-478a-91a7-ee61d6608abb.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\cd6cb1af-c4d6-478a-91a7-ee61d6608abb.jpg"
+    },
+    {
+      "Identity": "c:\\Users\\chihd\\Documents\\GitHub\\workDemo\\webapi\\wwwroot\\images\\products\\db39ef4b-1e8e-42ff-90b8-5a48aa1bbdb1.jpg",
+      "SourceId": "webapi",
+      "SourceType": "Discovered",
+      "ContentRoot": "c:\\Users\\chihd\\Documents\\GitHub\\workDemo\\webapi\\wwwroot\\",
+      "BasePath": "_content/webapi",
+      "RelativePath": "images/products/db39ef4b-1e8e-42ff-90b8-5a48aa1bbdb1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\db39ef4b-1e8e-42ff-90b8-5a48aa1bbdb1.jpg"
     }
   ]
 }
