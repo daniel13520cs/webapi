@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\chihd\\Documents\\GitHub\\workDemo\\webapi\\webapi.csproj": {}
+    "C:\\Users\\chihd\\Documents\\GitHub\\workDemo\\webapi\\webapi.csproj": {}
   },
   "projects": {
-    "c:\\Users\\chihd\\Documents\\GitHub\\workDemo\\webapi\\webapi.csproj": {
+    "C:\\Users\\chihd\\Documents\\GitHub\\workDemo\\webapi\\webapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\chihd\\Documents\\GitHub\\workDemo\\webapi\\webapi.csproj",
+        "projectUniqueName": "C:\\Users\\chihd\\Documents\\GitHub\\workDemo\\webapi\\webapi.csproj",
         "projectName": "webapi",
-        "projectPath": "c:\\Users\\chihd\\Documents\\GitHub\\workDemo\\webapi\\webapi.csproj",
+        "projectPath": "C:\\Users\\chihd\\Documents\\GitHub\\workDemo\\webapi\\webapi.csproj",
         "packagesPath": "C:\\Users\\chihd\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\chihd\\Documents\\GitHub\\workDemo\\webapi\\obj\\",
+        "outputPath": "C:\\Users\\chihd\\Documents\\GitHub\\workDemo\\webapi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\chihd\\AppData\\Roaming\\NuGet\\NuGet.Config"
