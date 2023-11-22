@@ -27,8 +27,8 @@ public class FilesController : ControllerBase
 
         string assemblyPath = Assembly.GetExecutingAssembly().Location;
         string assemblyDirectory = Path.GetDirectoryName(assemblyPath);
-        string imageURL = Path.Combine("wwwroot","images", "products");
-        var uploadsFolder = Path.Combine(assemblyDirectory, "../../../", imageURL);
+        string imageURL = Path.Combine("images", "products");
+        var uploadsFolder = Path.Combine(assemblyDirectory, "../../../", "wwwroot", imageURL);
         if (!Directory.Exists(uploadsFolder))
         {
             Directory.CreateDirectory(uploadsFolder);

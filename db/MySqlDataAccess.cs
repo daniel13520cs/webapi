@@ -128,7 +128,7 @@ public IList<ProductModel> GetAllProducts()
                         .SetPrice(reader.GetInt32("price"))
                         .SetCurrency(reader["currency"].ToString())
                         .SetQuantity(reader.GetInt32("maxQuantity"))
-                        .SetImageURL($"images/{reader["imageURL"].ToString()}") // Adjust this line
+                        .SetImageURL(reader["imageURL"].ToString()) // Adjust this line
                         .Build();
 
                     productList.Add(product);
