@@ -7,15 +7,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
 using webapi.builder;
-
+using System.Net.Http;
+using PuppeteerSharp;
+using AngleSharp.Html.Parser;
 [Route("products")]
 [ApiController]
 public class FilesController : ControllerBase
 {
     private readonly IWebHostEnvironment _webHostEnvironment;
-    public FilesController(IWebHostEnvironment webHostEnvironment)
+    private readonly IHttpClientFactory _httpClientFactory;
+
+    public FilesController(IWebHostEnvironment webHostEnvironment, IHttpClientFactory httpClientFactory)
     {
         _webHostEnvironment = webHostEnvironment;
+        _httpClientFactory = httpClientFactory;
     }
 
     [HttpPost("upload")]
@@ -66,5 +71,59 @@ public class FilesController : ControllerBase
             Console.WriteLine(p);
         }
         return Ok(products);
+    }
+
+    [HttpGet("url")]
+    public async Task<IActionResult> GetProductInfo(string productUrl)
+    {
+        try
+        {
+            /*var httpClient = _httpClientFactory.CreateClient();
+            var response = await httpClient.GetStringAsync(productUrl);
+
+            var parser = new HtmlParser();
+            var document = await parser.ParseDocumentAsync(response);
+
+            // Extract product information from the HTML document
+            //var name = document.QuerySelector(".product-name-selector").TextContent;
+            //var imageUrl = document.QuerySelector(".product-image-selector").GetAttribute("src");
+
+            ProductModel product = new ProductModelBuilder()
+                //.SetName(name)
+                //.SetImageURL(imageUrl)
+                .Build();*/
+            var headlessProduct = GetProductFromHeadlessBrowswer(productUrl);
+            return Ok(new {headlessProduct});
+        }
+        catch (Exception ex)
+        {
+            return BadRequest($"Error: {ex.Message}");
+        }
+    }
+
+    private async Task<string> GetProductFromHeadlessBrowswer(string productUrl)
+    {
+        using (var browser = await Puppeteer.LaunchAsync(new LaunchOptions { Headless = true, ExecutablePath="C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe", }))
+        using (var page = await browser.NewPageAsync())
+        {
+            await page.GoToAsync(productUrl);
+
+            // Wait for some time to ensure the page is fully loaded
+            await page.WaitForTimeoutAsync(1000);
+
+            // Extract product information using PuppeteerSharp
+            //var productName = await page.QuerySelectorAsync(".product-title");
+            //var imageUrl = await page.QuerySelectorAsync(".product-image img");
+
+            /*var product = new Product
+            {
+                Name = productName == null ? "N/A" : await productName.InnerTextAsync(),
+                ImageUrl = imageUrl == null ? "N/A" : await imageUrl.GetAttributeAsync("src"),
+                // Add other relevant properties
+            };*/
+            var pageContent = await page.GetContentAsync();
+
+            return pageContent;
+        }
     }
 }

@@ -19,6 +19,7 @@ builder.Services.AddCors(options => {
             .AllowAnyHeader();
     });
 });
+builder.Services.AddHttpClient();
 
 // Configure JWT authentication
 builder.Services
