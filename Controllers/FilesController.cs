@@ -10,12 +10,33 @@ using webapi.builder;
 using System.Net.Http;
 using PuppeteerSharp;
 using AngleSharp.Html.Parser;
+using System.Diagnostics.Eventing.Reader;
 [Route("products")]
 [ApiController]
 public class FilesController : ControllerBase
 {
     private readonly IWebHostEnvironment _webHostEnvironment;
     private readonly IHttpClientFactory _httpClientFactory;
+#if DEBUG
+    private static string _imageURL = Path.Combine("images", "products");
+#elif RELEASE
+    private static string _imageURL = Path.Combine("images", "products");
+#endif
+
+    private static string _assemblyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+#if DEBUG
+    private static string _uploadsFolder = Path.Combine(_assemblyDirectory, "../../../", "wwwroot", _imageURL);
+#elif RELEASE
+    private static string _uploadsFolder = Path.Combine(_assemblyDirectory, _imageURL);
+#endif
+
+#if DEBUG
+    private static string _filePathURL = Path.Combine("wwwroot", _imageURL);
+#elif RELEASE
+    private static string _filePathURL = Path.Combine("wwwroot", _imageURL);
+#endif
+
+
 
     public FilesController(IWebHostEnvironment webHostEnvironment, IHttpClientFactory httpClientFactory)
     {
@@ -30,18 +51,15 @@ public class FilesController : ControllerBase
             return BadRequest("File is empty.");
         }
 
-        string assemblyPath = Assembly.GetExecutingAssembly().Location;
-        string assemblyDirectory = Path.GetDirectoryName(assemblyPath);
-        string imageURL = Path.Combine("images", "products");
-        var uploadsFolder = Path.Combine(assemblyDirectory, "../../../", "wwwroot", imageURL);
-        if (!Directory.Exists(uploadsFolder))
+
+        if (!Directory.Exists(_uploadsFolder))
         {
-            Directory.CreateDirectory(uploadsFolder);
+            Directory.CreateDirectory(_uploadsFolder);
         }
         var uniqueFileName = $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
-        var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+        var uploadedFilePath = Path.Combine(_uploadsFolder, uniqueFileName);
 
-        using (var stream = new FileStream(filePath, FileMode.Create))
+        using (var stream = new FileStream(uploadedFilePath, FileMode.Create))
         {
             await file.CopyToAsync(stream);
         }
@@ -52,15 +70,17 @@ public class FilesController : ControllerBase
             .SetPrice(price)
             .SetCurrency(currency)
             .SetQuantity(quantity)
-            .SetImageURL(Path.Combine(imageURL, uniqueFileName))
+            .SetImageURL(Path.Combine(_filePathURL, uniqueFileName))
             .Build();
         
         MySqlDataAccess db = new MySqlDataAccess();
         db.CreateProduct(product);
 
         // You can return the file path or any other relevant information
-        return Ok(new { FilePath = filePath });
+        return Ok(new { UploadedFilePath = uploadedFilePath });
     }
+
+
 
     [HttpGet("allProducts")]
     public async Task<IActionResult> GetAllProductsInfo() 
@@ -73,6 +93,30 @@ public class FilesController : ControllerBase
         return Ok(products);
     }
 
+    [HttpDelete("delete")]
+    public async Task<IActionResult> DeleteAllProductsInfo()
+    {
+        try
+        {
+            MySqlDataAccess db = new MySqlDataAccess();
+            db.DeleteAllProducts();
+
+            // Delete all files in the directory
+            string[] files = Directory.GetFiles(_uploadsFolder);
+            foreach (var filePath in files)
+            {
+                System.IO.File.Delete(filePath);
+            }
+
+            // Delete the directory itself
+            Directory.Delete(_uploadsFolder, true);
+        }
+        catch (Exception ex)
+        {
+            return Ok("exception throws" + ex.Message);
+        }
+        return Ok();
+    }
     [HttpGet("url")]
     public async Task<IActionResult> GetProductInfo(string productUrl)
     {

@@ -13,7 +13,11 @@ public class MySqlDataAccess
         _configuration = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json") // Assuming your JSON configuration is in appsettings.json file
             .Build();
-        _connectionString = _configuration.GetConnectionString("DefaultConnection");
+#if DEBUG
+        _connectionString = _configuration.GetConnectionString("localConnection");
+#elif RELEASE
+        _connectionString = _configuration.GetConnectionString("azureConnection");
+#endif
     }
 
     public MySqlDataAccess(string connectionString)
@@ -139,6 +143,20 @@ public IList<ProductModel> GetAllProducts()
 
     return productList;
 }
+
+    public void DeleteAllProducts()
+    {
+        using (MySqlConnection connection = new MySqlConnection(_connectionString))
+        {
+            connection?.Open();
+            string query = "DELETE FROM product";
+
+            using (MySqlCommand command = new MySqlCommand(query, connection))
+            {
+                command.ExecuteNonQuery();
+            }
+        }
+    }
 
 
     public string? GetSessionToken(string username)
