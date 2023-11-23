@@ -1,5 +1,6 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -67,7 +68,30 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseStaticFiles();
+try
+{
+    app.UseStaticFiles();
+
+    var fileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.WebRootPath, "..", "images", "products"));
+    var requestPath = "/images/products";
+
+    // Enable displaying browser links.
+    app.UseStaticFiles(new StaticFileOptions
+    {
+        FileProvider = fileProvider,
+        RequestPath = requestPath
+    });
+
+    app.UseDirectoryBrowser(new DirectoryBrowserOptions
+    {
+        FileProvider = fileProvider,
+        RequestPath = requestPath
+    });
+}
+catch(Exception ex)
+{
+    Console.WriteLine(ex);
+}
 
 app.UseHttpsRedirection();
 

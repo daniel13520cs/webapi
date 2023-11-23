@@ -31,9 +31,9 @@ public class FilesController : ControllerBase
 #endif
 
 #if DEBUG
-    private static string _filePathURL = Path.Combine("wwwroot", _imageURL);
+    private static string _filePathURL = Path.Combine(_imageURL);
 #elif RELEASE
-    private static string _filePathURL = Path.Combine("wwwroot", _imageURL);
+    private static string _filePathURL = Path.Combine(_imageURL);
 #endif
 
 
@@ -70,7 +70,7 @@ public class FilesController : ControllerBase
             .SetPrice(price)
             .SetCurrency(currency)
             .SetQuantity(quantity)
-            .SetImageURL(Path.Combine(_filePathURL, uniqueFileName))
+            .SetImageURL(Path.Combine(_imageURL, uniqueFileName))
             .Build();
         
         MySqlDataAccess db = new MySqlDataAccess();
